@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Fedi6431">
+  <meta name="description" content="Free training scheduler">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scheduled Training</title>
+  <style>
+    .box {
+      border: 2px solid black;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      margin: 10px;
+    }
+    .green {
+      background-color: #00ff003d;
+    }
+    .red {
+      background-color: #ff00003d;
+    }
+    .margin-top {
+      margin-top: 10px;
+    }
+    .low-margin {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Exercise manager</h1>
+        <h2>Exercises:</h2>
+        <ul id="exerciseList"></ul>
+
+        <!--EXERCISE MANAGER DIV-->
+        <div>
+            <br>
+            <label for="ExerciseName">Exercise Name:</label><br>
+            <input type="text" id="ExerciseName" name="ExerciseName" value=""><br>
+            <label for="reps">Number of reps to do:</label><br>
+            <input type="number" id="objective" name="objective" min="1"><br><br>
+        </div>
+
+        <input type="button" value="Add Exercise" id="addExerciseBtn">
+        <input type="button" value="Delete Exercise" id="deleteExerciseBtn">
+    </div>
+
+    <!--EXAMPLE DIV-->
+    <div class="box red" id="exampleExercise" style="display: none;">
+        <h1 class="exercise-title">Exercise name</h1>
+        <p><strong>Reps done: </strong><span class="reps-done">0</span></p>
+        <p><strong>Objective: </strong><span class="objective-number">0</span></p>
+        <input type="number" class="add-rep" min="1" value="1">
+        <br>
+        <input type="button" value="Add rep numbers" class="margin-top add-rep-btn">
+        <input type="button" value="Clear rep numbers" class="margin-top clear-reps-btn">
+    </div>
+
+    <script>
+        const addExerciseBtn = document.getElementById('addExerciseBtn');
+        const exerciseList = document.getElementById('exerciseList');
+        const exampleExercise = document.getElementById('exampleExercise');
+
+        addExerciseBtn.addEventListener('click', () => {
+            const exerciseName = document.getElementById('ExerciseName').value;
+            const objective = parseInt(document.getElementById('objective').value);
+
+            if (exerciseName && objective > 0) {
+                const newExerciseDiv = exampleExercise.cloneNode(true);
+                newExerciseDiv.style.display = 'block';
+                newExerciseDiv.querySelector('.exercise-title').textContent = exerciseName;
+                newExerciseDiv.querySelector('.objective-number').textContent = objective;
+                newExerciseDiv.querySelector('.reps-done').textContent = 0;
+
+                const addRepBtn = newExerciseDiv.querySelector('.add-rep-btn');
+                const clearRepsBtn = newExerciseDiv.querySelector('.clear-reps-btn');
+                const repsDoneSpan = newExerciseDiv.querySelector('.reps-done');
+                const objectiveSpan = newExerciseDiv.querySelector('.objective-number');
+                const addRepInput = newExerciseDiv.querySelector('.add-rep');
+
+                addRepBtn.addEventListener('click', () => {
+                    const repsToAdd = parseInt(addRepInput.value);
+                    let currentReps = parseInt(repsDoneSpan.textContent);
+                    currentReps += repsToAdd;
+                    repsDoneSpan.textContent = currentReps;
+
+                    if (currentReps >= objective) {
+                        newExerciseDiv.classList.remove('red');
+                        newExerciseDiv.classList.add('green');
+                        addRepBtn.disabled = true; // Disable the button if the objective is met
+                    }
+                });
+
+                clearRepsBtn.addEventListener('click', () => {
+                    repsDoneSpan.textContent = 0; // Reset reps done to 0
+                    addRepBtn.disabled = false; // Re-enable the button
+                    newExerciseDiv.classList.remove('green'); // Reset color to red
+                });
+
+                exerciseList.appendChild(newExerciseDiv);
+                document.getElementById('ExerciseName').value = ''; // Clear input field
+                document.getElementById('objective').value = ''; // Clear objective field
+            } else {
+                alert('Please enter a valid exercise name and objective number.');
+            }
+        });
+
+        // Functionality for deleting exercises can be added here if needed
+        // For now, we will just clear the input fields
+        document.getElementById('deleteExerciseBtn').addEventListener('click', () => {
+            const exercises = exerciseList.getElementsByClassName('box');
+            if (exercises.length > 0) {
+                exerciseList.removeChild(exercises[exercises.length - 1]); // Remove the last exercise added
+            }
+        });
+    </script>
+</body>
+
+</html>
