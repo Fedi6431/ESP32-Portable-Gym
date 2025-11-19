@@ -21,3 +21,6 @@ Instead if you choose the Espressif Flash Tool you need to do this:
 3. Select UART loadmode (default)  -->
 ### Powering the ESP32
 After uploading the code into the ESP32 you can simply power it.
+
+## Usage
+Go to the gateway of the AP and you'll see a simple dashboard to add Exercises, reps and sets
