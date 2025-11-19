@@ -1,2 +1,7 @@
 # ESP32-Portable-Gym
-A simple Training scheduler made with ESP32 
+
+## Installation
+
+### Download
+### Uploading into the ESP32
+### Powering the ESP32
