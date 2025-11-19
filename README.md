@@ -9,4 +9,8 @@ To download the code you can:
 2. ![Download directly the zip](https://github.com/Fedi6431/ESP32-Portable-Gym/archive/refs/heads/main.zip)
 
 ### Uploading into the ESP32
+You can use:
+1. Arduino IDE ( ![download link](https://www.arduino.cc/en/software/#ide) )
+2. Espressif Flash Tool ( ![download link](https://docs.espressif.com/projects/esp-test-tools/en/latest/esp32/production_stage/tools/flash_download_tool.html) )
+3. 
 ### Powering the ESP32
