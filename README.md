@@ -11,6 +11,13 @@ To download the code you can:
 ### Uploading into the ESP32
 You can use:
 1. Arduino IDE ( ![download link](https://www.arduino.cc/en/software/#ide) )
-2. Espressif Flash Tool ( ![download link](https://docs.espressif.com/projects/esp-test-tools/en/latest/esp32/production_stage/tools/flash_download_tool.html) )
-3. 
+2. Espressif Flash Tool ( ![download link](https://docs.espressif.com/projects/esp-test-tools/en/latest/esp32/production_stage/tools/flash_download_tool.html) ) ! SOON AVAIBLE !
+<!--
+If you choose Arduino IDE you need to install the ESP32 module and upload the code into it
+
+Instead if you choose the Espressif Flash Tool you need to do this:
+1. Select chip type, in this case ESP32-*your model*
+2. Select develop workmode (default)
+3. Select UART loadmode (default)  -->
 ### Powering the ESP32
+After uploading the code into the ESP32 you can simply power it.
